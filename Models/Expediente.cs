@@ -28,7 +28,7 @@ namespace SistemaCitasMedicas.Models
         public int Presion2 { get; set; } = default!;
 
         [Required]
-        public decimal Peso { get; set; } = default!;
+        public float Peso { get; set; } = default!;
 
         [Required]
         public int Altura { get; set; } = default!;

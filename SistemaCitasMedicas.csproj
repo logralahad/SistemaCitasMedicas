@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="appsettings.json~RF678fb8.TMP" />
     <None Remove="Models\Empleado.cs~RF60ba35.TMP" />
   </ItemGroup>
 
