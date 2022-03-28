@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    var user = await UserManager.GetUserAsync(User);
+    var email = user?.Email;
+}
+
+<ul class="navbar-nav flex-grow-1">
+    @{
+        if( SignInManager.IsSignedIn(User) && @email.Equals("admin@gmail.com") )
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Ciudadanos" asp-action="Index">Ciudadanos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Viviendas" asp-action="Index">Viviendas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Adeudos" asp-action="Index">Adeudos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Pagos" asp-action="Index">Pagos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Gastos" asp-action="Index">Gastos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Comites" asp-action="Index">Comites</a>
+            </li>
+        }
+        else if( SignInManager.IsSignedIn(User) && !@email.Equals("admin@gmail.com") )
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Pagos" asp-action="Index">Pagar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Comites" asp-action="Index">Comites</a>
+            </li>
+        }
+    }
+</ul>
+
