@@ -34,16 +34,17 @@ namespace SistemaCitasMedicas.Models
         public string TipoSangre { get; set; } = string.Empty;
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime? FechaNac { get; set; } = default!;
 
         [Required]
-        public bool? Alcoholismo { get; set; } = default!;
+        public bool Alcoholismo { get; set; } = default!;
 
         [Required]
-        public bool? Tabaquismo { get; set; } = default!;
+        public bool Tabaquismo { get; set; } = default!;
 
         [Required]
-        public bool? Toxicomania { get; set; } = default!;
+        public bool Toxicomania { get; set; } = default!;
 
         [Required]
         [StringLength(350)]

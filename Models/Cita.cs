@@ -10,9 +10,11 @@ namespace SistemaCitasMedicas.Models
         public int Id { get; set; } = default!;
 
         [Required]
+        [DataType(DataType.Date)]
         public DateTime? Fecha { get; set; } = default!;
 
         [Required]
+        [DataType(DataType.Time)]
         public DateTime? Hora { get; set; } = default!;
 
         [Required]

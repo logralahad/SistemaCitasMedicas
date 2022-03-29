@@ -1,45 +1,56 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using SistemaCitasMedicas.Data
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
+@inject ApplicationDbContext _db
 @{
     var user = await UserManager.GetUserAsync(User);
     var email = user?.Email;
+    Empleado empleadoActual = new Empleado();
+    var pos = _db.Empleados.Where(t => t.Correo == email);
+    if (pos.Count() > 0)
+    {
+        empleadoActual = pos.First();
+    }
 }
 
 <ul class="navbar-nav flex-grow-1">
     @{
-        if( SignInManager.IsSignedIn(User) && @email.Equals("admin@gmail.com") )
+        if (SignInManager.IsSignedIn(User) && @email.Equals("admin@gmail.com"))
         {
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Ciudadanos" asp-action="Index">Ciudadanos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Viviendas" asp-action="Index">Viviendas</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Adeudos" asp-action="Index">Adeudos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Pagos" asp-action="Index">Pagos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Gastos" asp-action="Index">Gastos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Comites" asp-action="Index">Comites</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Empleados" asp-action="Index">Empleados</a>
             </li>
         }
-        else if( SignInManager.IsSignedIn(User) && !@email.Equals("admin@gmail.com") )
+        else if (SignInManager.IsSignedIn(User) && !@email.Equals("admin@gmail.com"))
         {
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Pagos" asp-action="Index">Pagar</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Comites" asp-action="Index">Comites</a>
-            </li>
+            if (empleadoActual.Activo && empleadoActual.Rol.Equals("Secretaria"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Consultas" asp-action="Index">Consultas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Pacientes" asp-action="Index">Pacientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Expedientes" asp-action="Index">Expedientes</a>
+                </li>
+            }
+            else if (empleadoActual.Activo && empleadoActual.Rol.Equals("Doctor"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Citas" asp-action="Index">Citas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Consultas" asp-action="Index">Consultas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Pacientes" asp-action="Index">Pacientes</a>
+                </li>
+            }
         }
     }
 </ul>

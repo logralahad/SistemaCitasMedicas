@@ -18,7 +18,10 @@ namespace SistemaCitasMedicas.Models
         public string Rol { get; set; } = string.Empty;
 
         [Required]
+        public bool Activo { get; set; }
+
+        [Required]
         [StringLength(150)]
-        public bool? Activo { get; set; } = default!;
+        public string Correo { get; set; } = string.Empty;
     }
 }
