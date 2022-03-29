@@ -307,8 +307,7 @@ namespace SistemaCitasMedicas.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool?>("Activo")
-                        .IsRequired()
+                    b.Property<bool>("Activo")
                         .HasColumnType("bit");
 
                     b.Property<string>("Correo")
@@ -404,8 +403,7 @@ namespace SistemaCitasMedicas.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<bool?>("Alcoholismo")
-                        .IsRequired()
+                    b.Property<bool>("Alcoholismo")
                         .HasColumnType("bit");
 
                     b.Property<string>("Aseguradora")
@@ -457,8 +455,7 @@ namespace SistemaCitasMedicas.Data.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<bool?>("Tabaquismo")
-                        .IsRequired()
+                    b.Property<bool>("Tabaquismo")
                         .HasColumnType("bit");
 
                     b.Property<string>("Telefono")
@@ -471,8 +468,7 @@ namespace SistemaCitasMedicas.Data.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<bool?>("Toxicomania")
-                        .IsRequired()
+                    b.Property<bool>("Toxicomania")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");

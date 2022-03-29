@@ -63,7 +63,7 @@ namespace SistemaCitasMedicas.Controllers
         public async Task<IActionResult> Create([Bind("Id,Nombre,Rol,Activo,Correo")] Empleado empleado)
         {
             var user = new IdentityUser() { Email = empleado.Correo, UserName = empleado.Correo, EmailConfirmed = true };
-            var result = await _userManager.CreateAsync(user, "Kraant0207.");
+            var result = await _userManager.CreateAsync(user, "Pacientes9634.");
 
             if (result.Succeeded)
             {
